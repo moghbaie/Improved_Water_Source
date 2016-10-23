@@ -2,7 +2,9 @@ import numpy
 import scipy
 import sklearn
 from flask import Flask, render_template,  make_response
-
+#import wbdata
+import pandas
+import matplotlib.pyplot as plt
 
 app = Flask(__name__)
 
