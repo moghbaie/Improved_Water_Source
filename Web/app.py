@@ -2,6 +2,10 @@ import numpy
 import scipy
 import sklearn
 from flask import Flask, render_template,  make_response
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure 
+import random
+import StringIO
 
 app = Flask(__name__)
 
