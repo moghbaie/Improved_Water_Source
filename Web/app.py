@@ -2,7 +2,7 @@ import numpy
 import scipy
 import sklearn
 from flask import Flask, render_template,  make_response
-#import wbdata
+import wbdata
 import pandas
 import matplotlib.pyplot as plt
 
@@ -13,6 +13,10 @@ app = Flask(__name__)
 def hello():
     return render_template('hello.html')
 
+
+@app.route('/plot')
+def plot():
+	return render_template('echo.html')
 # if __name__ == '__main__':
 #     # Use this port=33507 when you want to Flask to work on Heroku....
 #     app.run()
