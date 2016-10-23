@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return 'Hello from Anaconda'
+    return 'Hello in from Anaconda'
 
 
 if __name__ == '__main__':
