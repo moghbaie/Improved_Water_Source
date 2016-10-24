@@ -8,6 +8,8 @@ from bokeh.plotting import figure, show, output_file
 from bokeh.embed import components 
 from bokeh.palettes import Spectral11
 from bokeh.charts import TimeSeries, show, output_file
+import urllib3.contrib.pyopenssl
+urllib3.contrib.pyopenssl.inject_into_urllib3()
 app = Flask(__name__)
 
 @app.route("/")
