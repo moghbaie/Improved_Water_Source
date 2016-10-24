@@ -1,13 +1,16 @@
-import wbdata
-import pandas
-import matplotlib.pyplot as plt
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-0.12.0.min.css" type="text/css" />
+    <script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.0.min.js"></script>
+    {{ script | safe }}
+  </head>
+  <body>
+    <div class=page>
+      <h1>Improved Water Source</h1>
+      {{ div | safe }}
+    </div>
+  </body>
+</html>
 
-countries = ["CL","UY","HU"] 
-indicators = {'SH.H2O.SAFE.ZS':'Improved water source'}
-df = wbdata.get_dataframe(indicators, country=countries, convert_date=False)
-dfu = df.unstack(level=0)
 
-plotPng = dfu.plot(); 
-plt.legend(loc='best'); 
-plt.title("Improved water source (% of population)"); 
-plt.xlabel('Date'); plt.ylabel('Improved water source (% of population');
