@@ -8,8 +8,6 @@ from bokeh.plotting import figure, show, output_file
 from bokeh.embed import components 
 from bokeh.palettes import Spectral11
 from bokeh.charts import TimeSeries, show, output_file
-import urllib3.contrib.pyopenssl
-urllib3.contrib.pyopenssl.inject_into_urllib3()
 
 app = Flask(__name__)
 
@@ -30,6 +28,7 @@ def plot():
 	range(dfu.shape[1])
 	dfu.columns=range(dfu.shape[1])
 	dfu['Date']=dfu.index
+	t=dfu.index
 	xyvalues = pd.DataFrame(dict(
 	        Chile=dfu[0],
 	        Uruguay=dfu[1],
