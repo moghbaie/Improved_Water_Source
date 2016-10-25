@@ -41,7 +41,7 @@ def plot():
 	               title="Water Source", ylabel='Improved water source (% of population)')
 	
 	script, div = components(p)
-	return render_template('echo.html', script=script, div=div)
+	return render_template('stocks_timeseries.html', script=script, div=div)
 
 
 # if __name__ == '__main__':
