@@ -28,7 +28,6 @@ def plot():
 	range(dfu.shape[1])
 	dfu.columns=range(dfu.shape[1])
 	dfu['Date']=dfu.index
-	t=dfu.index
 	xyvalues = pd.DataFrame(dict(
 	        Chile=dfu[0],
 	        Uruguay=dfu[1],
