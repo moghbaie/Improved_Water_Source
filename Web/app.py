@@ -20,7 +20,7 @@ def plot():
 	p = figure(title='Improved water source % of population',
 	              x_axis_label='date',
 	              x_axis_type='datetime')
-	countries = ["CL","UY","HU"]
+	countries = ["BR","ES","PT","ZA","CD","LY","ML","MR","NE","NG","TD"]
 	indicators = {'SH.H2O.SAFE.ZS':'Improved water source'}
 	df = wbdata.get_dataframe(indicators, country=countries, convert_date=False)
 	dfu = df.unstack(level=0)
@@ -29,9 +29,17 @@ def plot():
 	dfu.columns=range(dfu.shape[1])
 	dfu['Date']=dfu.index
 	xyvalues = pd.DataFrame(dict(
-	        Chile=dfu[0],
-	        Uruguay=dfu[1],
-	        Hungary=dfu[2],
+	        Brazil=dfu[0],
+	        Chad=dfu[1],
+	        Congo=dfu[2],
+	        Libya=dfu[3],
+	        Mali=dfu[4],
+	        Mauritania=dfu[5],
+	        Niger=dfu[6],
+	        Nigeria=dfu[7],
+	        Portugal=dfu[8],
+	        SouthAfrica=dfu[9],
+	        Spain=dfu[10],
 	        Date=dfu['Date']
 	    ))
 
