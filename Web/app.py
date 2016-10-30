@@ -11,11 +11,11 @@ from bokeh.charts import TimeSeries, show, output_file
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/plot1")
 def hello():
     return render_template('hello.html')
 
-@app.route('/plot')
+@app.route('/plot2')
 def plot():
 	p = figure(title='Improved water source % of population',
 	              x_axis_label='date',
