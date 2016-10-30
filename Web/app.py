@@ -59,21 +59,27 @@ def plot3():
               x_axis_label='date',
               x_axis_type='datetime')
 	df=pd.read_csv('chart.csv')
-	df = df[df['status'] =='water consumer']
-	df1=df[['Population possible access National water','Name']]
+	dfd = df[df['status'] =='water consumer']
+	df1=dfd[['Population possible access National water','Country']]
 
-	df1.columns=['Population wo access water','Name']
+	df1.columns=['Population wo access water','Country']
 	df1['category']='Population possible access National water'
 
-	df2=df[['Revised Pop wo water','Name']]
-	df2.columns=['Population wo access water','Name']
+	df2=dfd[['Revised Pop wo water','Country']]
+	df2.columns=['Population wo access water','Country']
 	df2['category']='Revised Pop wo water'
 	df3=pd.concat([df1,df2])
 	output_file("stacked_bar.html")
-	p=Bar(df3,label='Name',values='Population wo access water',stack='category',legend='top_right')
+	p=Bar(df3,label='Country',values='Population wo access water',stack='category',
+		color=color(columns='category', palette=['Orange','Red'],
+                      sort=False),legend='top_right')
 
 	script, div = components(p)
-	return render_template('plot3.html', script=script, div=div)
+	df4= df[df['status'] =='water supplier']
+	output_file("bar.html")
+	q=Bar(df4,label='Country',values='Possible water provider',legend=False, color="Green")
+	script2, div2 = components(q)
+	return render_template('plot3.html', script=script, div=div, script2=script2, div2=div2)
 
 if __name__ == "__main__":
     app.run(debug=True)

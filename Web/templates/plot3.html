@@ -1,14 +1,84 @@
 <!doctype html>
 <html>
-  <head>
+<style>
+#wrapper {
+    width: 100%;
+    overflow: hidden;
+}
+
+#first {
+    width: 40%;
+    height: 50%;
+    float: left;
+    /* border: 1px solid red;*/
+}
+
+#second {
+    width: 50%;
+    height: 50%;
+    /* border: 1px solid green;*/
+    float: right;
+}
+
+
+/*#viz1477809120402 {
+    width: 50%;
+     border: 1px solid green;
+    float: right;
+}*/
+</style>
+
+<head>
     <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-0.12.0.min.css" type="text/css" />
     <script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.0.min.js"></script>
-    {{ script | safe }}
-  </head>
-  <body>
-    <div class=page >
-      <h2>access to water</h2>
-      {{ div | safe }}
+    {{ script | safe }} {{ script2 | safe }}
+</head>
+
+<body>
+    <a href="http://www.wri.org/resources/data-sets/aqueduct-country-and-river-basin-rankings">Data from wri.org
+        </a>
+    <div id="wrapper">
+        <div id="first" class=page>
+            <h3>24 countries with population without access to water and high baseline water stress</h3>
+            <br> {{ div | safe }}
+        </div>
+        <div id="second" class=page>
+            <h3>23 possible water supplier countries with low drought severity</h3>
+            <br> {{ div2 | safe}}
+        </div>
     </div>
-  </body>
+    <br>
+    <div class='tableauPlaceholder' id='viz1477789454945' style='position: relative'>
+        <noscript>
+            <a href='#'>
+                <img alt='Sheet 2 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Im&#47;Improvewatersupplier&#47;Sheet2&#47;1_rss.png' style='border: none' />
+            </a>
+        </noscript>
+        <object class='tableauViz' style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+            <param name='site_root' value='' />
+            <param name='name' value='Improvewatersupplier&#47;Sheet2' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='yes' />
+            <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Im&#47;Improvewatersupplier&#47;Sheet2&#47;1.png' />
+            <param name='animate_transition' value='yes' />
+            <param name='display_static_image' value='yes' />
+            <param name='display_spinner' value='yes' />
+            <param name='display_overlay' value='yes' />
+            <param name='display_count' value='yes' />
+        </object>
+    </div>
+    <script type='text/javascript'>
+    var divElement = document.getElementById('viz1477789454945');
+    var vizElement = divElement.getElementsByTagName('object')[0];
+    vizElement.style.width = '90%';
+    vizElement.style.height = (divElement.offsetWidth * 0.4) + 'px';
+    var scriptElement = document.createElement('script');
+    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+    vizElement.parentNode.insertBefore(scriptElement, vizElement);
+    </script>
+    <br>
+    <br>
+</body>
+
 </html>
