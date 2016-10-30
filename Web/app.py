@@ -7,17 +7,20 @@ import pandas as pd
 from bokeh.plotting import figure, show, output_file
 from bokeh.embed import components 
 from bokeh.palettes import Spectral11
-from bokeh.charts import TimeSeries, show, output_file
+from bokeh.charts import TimeSeries, show, output_file, Bar
+from bokeh.charts.attributes import cat, color
+from bokeh.charts.operations import blend
+from bokeh.charts.utils import df_from_json
 
 app = Flask(__name__)
 
 @app.route("/plot1")
-def hello():
-    return render_template('hello.html')
+def plot1():
+    return render_template('plot1.html')
 
-@app.route('/plot2')
-def plot():
-	p = figure(title='Improved water source % of population',
+@app.route('/plot2') 
+def plot2():
+	p = figure(title='Data from worldbank.org (SH.H2O.SAFE.ZS)',
 	              x_axis_label='date',
 	              x_axis_type='datetime')
 	countries = ['AF','TZ','AO','MG','MZ','CG','PG','SA','TD','MN']
@@ -45,14 +48,30 @@ def plot():
 	output_file("stocks_timeseries.html")
 
 	p = TimeSeries(xyvalues, x='Date', legend=True,
-	               title="Water Source", ylabel='Improved water source (% of population)')
+	               title="", ylabel='Improved water source (% of population)')
 	
 	script, div = components(p)
-	return render_template('echo.html', script=script, div=div)
+	return render_template('plot2.html', script=script, div=div)
 
+@app.route("/plot3")
+def plot3():
+	plot = figure(title='',
+              x_axis_label='date',
+              x_axis_type='datetime')
+	df=pd.read_csv('chart.csv')
+	df = df[df['status'] =='water consumer']
+	df1=df[['Population possible access National water','Name']]
+	df1.columns=['Population wo access water','Name']
+	df1['category']='Population possible access National water'
+	df2=df[['Revised Pop wo water','Name']]
+	df2.columns=['Population wo access water','Name']
+	df2['category']='Revised Pop wo water'
+	df3=pd.concat([df1,df2])
 
-# if __name__ == '__main__':
-#     # Use this port=33507 when you want to Flask to work on Heroku....
-#     app.run()
+	p=Bar(df3,label='Name',values='Population wo access water',stack='category',legend='top_right')
+	output_file("stacked_bar.html")	
+	script, div = components(plot)
+	return render_template('plot3.html', script=script, div=div)
+
 if __name__ == "__main__":
     app.run(debug=True)
