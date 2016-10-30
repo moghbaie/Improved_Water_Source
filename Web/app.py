@@ -55,21 +55,10 @@ def plot2():
 
 @app.route("/plot3")
 def plot3():
-	plot = figure(title='',
+	plot = figure(title='something',
               x_axis_label='date',
               x_axis_type='datetime')
-	df=pd.read_csv('chart.csv')
-	df = df[df['status'] =='water consumer']
-	df1=df[['Population possible access National water','Name']]
-	df1.columns=['Population wo access water','Name']
-	df1['category']='Population possible access National water'
-	df2=df[['Revised Pop wo water','Name']]
-	df2.columns=['Population wo access water','Name']
-	df2['category']='Revised Pop wo water'
-	df3=pd.concat([df1,df2])
-
-	p=Bar(df3,label='Name',values='Population wo access water',stack='category',legend='top_right')
-	output_file("stacked_bar.html")	
+	
 	script, div = components(plot)
 	return render_template('plot3.html', script=script, div=div)
 
