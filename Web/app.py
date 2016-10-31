@@ -79,7 +79,7 @@ def plot3():
 	output_file("bar.html")
 	q=Bar(df4,label='Country',values='Possible water provider',legend=False, color="Green")
 	script2, div2 = components(q)
-	return render_template('plot3.html', script=script, div=div, script2=script2, div2=div2)
+	return render_template('plot3.html', script=script, div=div)
 
 if __name__ == "__main__":
     app.run(debug=True)
