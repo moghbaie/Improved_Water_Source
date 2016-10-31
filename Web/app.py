@@ -1,6 +1,4 @@
 import numpy
-import scipy
-import sklearn
 from flask import Flask, render_template,  make_response
 import wbdata
 import pandas as pd
