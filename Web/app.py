@@ -61,11 +61,11 @@ def plot3():
 	df1=dfd[['Population possible access National water','Country']]
 
 	df1.columns=['Population wo access water','Country']
-	df1['category']='Population possible access National water'
+	df1['category']='Population possible access to National water'
 
 	df2=dfd[['Revised Pop wo water','Country']]
 	df2.columns=['Population wo access water','Country']
-	df2['category']='Revised Pop wo water'
+	df2['category']='Revised Pop without water'
 	df3=pd.concat([df1,df2])
 	output_file("stacked_bar.html")
 	p=Bar(df3,label='Country',values='Population wo access water',stack='category',
