@@ -7,16 +7,14 @@
 }
 
 #first {
-    width: 40%;
-    height: 50%;
+    width: 49%;
     float: left;
-    /* border: 1px solid red;*/
+    /* border: 1px solid black;*/
 }
 
 #second {
-    width: 50%;
-    height: 50%;
-    /* border: 1px solid green;*/
+    width: 49%;
+    /* border: 1px solid black;*/
     float: right;
 }
 
@@ -35,19 +33,25 @@
 </head>
 
 <body>
-    <a href="http://www.wri.org/resources/data-sets/aqueduct-country-and-river-basin-rankings">Data from wri.org
-        </a>
+    <p style="margin-left:5em; margin-right:5em;">Following graphs were drawn with data from
+        <a href="http://www.wri.org/resources/data-sets/aqueduct-country-and-river-basin-rankings">wri.org
+    </a> such as baseline water stress and drought severity was used to find the countries with highest number of population without water that need to manage their low water supply. Baseline water supply. Baseline water stress measures total annual water withdrawals expressed as a percentage of the total annual available blue water. Higher values indicate more competition among users. Drought severity measures the average length of drought times the dryness of the droughts from 1901 to 2008.Countries with high population without water access and high baseline water stress are the most in need of water and countries with high improve water access and low baseline water stress and low drought severity could be possible water suppliers.
+    </p>
     <div id="wrapper">
         <div id="first" class=page>
-            <h3>24 countries with population without access to water and high baseline water stress</h3>
+            <!--  <h4>Countries with high population without access to water and high baseline water stress</h4> -->
             <br> {{ div | safe }}
         </div>
         <div id="second" class=page>
-            <h3>23 possible water supplier countries with low drought severity</h3>
+            <!--  <h4>Possible water supplier countries with low drought severity</h4> -->
             <br> {{ div2 | safe}}
+            <br>
         </div>
     </div>
     <br>
+    <h3 style="margin-left:5em; margin-right:5em;">Map of possible water supply for countries with population without water and high baseline stress water</h3>
+    <p style="margin-left:5em; margin-right:5em;"> Countries like Japan, Turkey, italy, United Kingdom, Germany, Spain, Denmark could be possible water supplier for countries such as Afghanistan, Mongolia, Angola, Madagascar and Mozambique. You could se the same pattern in the map too. 
+    </p>
     <div class='tableauPlaceholder' id='viz1477789454945' style='position: relative'>
         <noscript>
             <a href='#'>
