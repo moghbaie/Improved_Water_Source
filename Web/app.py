@@ -53,8 +53,8 @@ def plot2():
 	script, div = components(p)
 	return render_template('plot2.html', script=script, div=div)
 
-@app.route("/plot4")
-def plot4():
+@app.route("/plot3")
+def plot3():
 	plot = figure(title='something',
               x_axis_label='date',
               x_axis_type='datetime')
@@ -75,11 +75,11 @@ def plot4():
                       sort=False),legend='top_right')
 
 	script, div = components(p)
-	df4= df[df['status'] =='water supplier']
-	output_file("bar.html")
-	q=Bar(df4,label='Country',values='Possible water provider',legend=False, color="Green")
-	script2, div2 = components(q)
-	return render_template('plot3.html', script=script, div=div, script2=script2, div2=div2)
+	# df4= df[df['status'] =='water supplier']
+	# output_file("bar.html")
+	# q=Bar(df4,label='Country',values='Possible water provider',legend=False, color="Green")
+	# script2, div2 = components(q)
+	return render_template('plot3.html', script=script, div=div)
 
 if __name__ == "__main__":
     app.run(debug=True)
