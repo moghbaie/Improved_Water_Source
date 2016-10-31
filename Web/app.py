@@ -75,11 +75,11 @@ def plot3():
                       sort=False),legend='top_right')
 
 	script, div = components(p)
-	# df4= df[df['status'] =='water supplier']
-	# output_file("bar.html")
-	# q=Bar(df4,label='Country',values='Possible water provider',legend=False, color="Green")
-	# script2, div2 = components(q)
-	return render_template('plot3.html', script=script, div=div)
+	df4= df[df['status'] =='water supplier']
+	output_file("bar.html")
+	q=Bar(df4,label='Country',values='Possible water provider',legend=False, color="Green")
+	script2, div2 = components(q)
+	return render_template('plot3.html', script=script, div=div, script2=script2, div2=div2)
 
 if __name__ == "__main__":
     app.run(debug=True)
