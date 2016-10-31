@@ -4,11 +4,10 @@ import wbdata
 import pandas as pd
 from bokeh.plotting import figure, show, output_file
 from bokeh.embed import components 
-from bokeh.palettes import Spectral11
+from bokeh.palettes import Blues9
 from bokeh.charts import TimeSeries, show, output_file, Bar
 from bokeh.charts.attributes import cat, color
-from bokeh.charts.operations import blend
-from bokeh.charts.utils import df_from_json
+
 
 app = Flask(__name__)
 
@@ -21,11 +20,16 @@ def plot2():
 	p = figure(title='Data from worldbank.org (SH.H2O.SAFE.ZS)',
 	              x_axis_label='date',
 	              x_axis_type='datetime')
-	countries = ['AF','TZ','AO','MG','MZ','CG','PG','SA','TD','MN']
+	countries = ['AF','TZ','AO','MG','MZ','CG']
 	indicators = {'SH.H2O.SAFE.ZS':'Improved water source'}
-	df = wbdata.get_dataframe(indicators, country=countries, convert_date=False)
-	dfu = df.unstack(level=0)
-	dfu=dfu['1990':]
+	df1 = wbdata.get_dataframe(indicators, country=countries, convert_date=False)
+	indicators2 = {'SP.POP.TOTL':'Total Population'}
+	df2 = wbdata.get_dataframe(indicators2, country=countries, convert_date=False)
+	dfu1 = df1.unstack(level=0)
+	dfu1=dfu1['1990':]
+	dfu2 = df2.unstack(level=0)
+	dfu2=dfu2['1990':]
+	dfu=pd.DataFrame(dfu1.values*dfu2.values,columns=dfu1.columns, index=dfu1.index)
 	range(dfu.shape[1])
 	dfu.columns=range(dfu.shape[1])
 	dfu['Date']=dfu.index
@@ -36,37 +40,28 @@ def plot2():
 		Madagascar=dfu[3],
 		Mozambique=dfu[4],
 		Congo=dfu[5],
-		New_Guinea=dfu[6],
-		Saudi_Arabia=dfu[7],
-		Chad=dfu[8],
-		Mongolia=dfu[9],
+		# New_Guinea=dfu[6],
+		# Saudi_Arabia=dfu[7],
+		# Chad=dfu[8],
+		# Mongolia=dfu[9],
 	        Date=dfu['Date']
 	    ))
 
 	output_file("stocks_timeseries.html")
 
 	p = TimeSeries(xyvalues, x='Date', legend=True,
-	               title="", ylabel='Improved water source (% of population)')
+	               title="", ylabel='Population with no access to improved source of water')
 	
 	script, div = components(p)
 	return render_template('plot2.html', script=script, div=div)
 
 @app.route("/plot3")
 def plot3():
-	plot = figure(title='something',
+	p = figure(title='something',
               x_axis_label='date',
               x_axis_type='datetime')
 	df=pd.read_csv('chart.csv')
-	dfd = df[df['status'] =='water consumer']
-	df1=dfd[['Population possible access National water','Country']]
-	df1.columns=['Population wo access water','Country']
-	df1['category']='Population possible access to National water'
-
-	df2=dfd[['Revised Pop wo water','Country']]
-	df2.columns=['Population wo access water','Country']
-	df2['category']='Revised Pop without water'
-
-	df3=pd.concat([df1,df2])
+	df3=pd.read_csv('df3d.csv')
 	output_file("stacked_bar.html")
 	p=Bar(df3,label='Country',values='Population wo access water',stack='category',
 		color=color(columns='category', palette=['Orange','Red'],
